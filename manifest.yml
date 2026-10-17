@@ -5,7 +5,7 @@ id: viewwork.workboard
 name: 作业看板
 description: 在主界面按学科轮播今日作业。同一学科的作业播完后，学科与作业一起滚动到下一科。
 entranceAssembly: "ViewWork.dll"
-url: https://github.com/Starry-Sky-World/WorkBoard
+url: https://github.com/lonely-4/WorkBoard
 version: 1.0.0.0
 apiVersion: 2.0.0.0
-author: Starry-Sky-World
+author: lonely-4
