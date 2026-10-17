@@ -1,0 +1,70 @@
+<ci:SettingsPageBase xmlns="https://github.com/avaloniaui"
+                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                     xmlns:ci="clr-namespace:ClassIsland.Core.Abstractions.Controls;assembly=ClassIsland.Core"
+                     xmlns:views="clr-namespace:ViewWork.Views"
+                     x:Class="ViewWork.Views.WorkBoardSettingsPage"
+                     x:Name="Page"
+                     AttachedToVisualTree="OnAttachedToVisualTree"
+                     DetachedFromVisualTree="OnDetachedFromVisualTree">
+    <Grid x:Name="Root"
+          Margin="24,0,24,12"
+          RowDefinitions="Auto,*"
+          VerticalAlignment="Top">
+        <StackPanel x:Name="Header" Spacing="12">
+            <TextBlock TextWrapping="Wrap"
+                       Opacity="0.72"
+                       Text="按档案里的学科顺序轮播。添加作业时选择学科并填写内容。没有作业的学科不会出现；都没有作业时显示“无学科 | 今日暂无作业”。"/>
+
+            <Border Padding="12,8" CornerRadius="10">
+                <StackPanel Spacing="8">
+                    <TextBlock Text="预览" Opacity="0.72"/>
+                    <views:WorkBoardComponent HorizontalAlignment="Left"/>
+                </StackPanel>
+            </Border>
+
+            <StackPanel Orientation="Horizontal" Spacing="12">
+                <TextBlock Text="每条作业停留（秒）" VerticalAlignment="Center"/>
+                <NumericUpDown Width="120"
+                               Minimum="1"
+                               Maximum="60"
+                               Increment="1"
+                               FormatString="0"
+                               Value="{Binding Store.IntervalSeconds, Mode=TwoWay}"/>
+            </StackPanel>
+        </StackPanel>
+
+        <DockPanel x:Name="Editor"
+                   Grid.Row="1"
+                   Margin="0,12,0,0"
+                   LastChildFill="True"
+                   MinHeight="220">
+            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="8" Margin="0,0,0,8">
+                <Button Content="添加作业" Click="Add_OnClick" IsEnabled="{Binding HasSubjects}"/>
+                <Button Content="编辑" Click="Edit_OnClick" IsEnabled="{Binding HasSelection}"/>
+                <Button Content="删除" Click="Remove_OnClick" IsEnabled="{Binding HasSelection}"/>
+                <Button Content="清空今日作业" Click="Clear_OnClick"/>
+            </StackPanel>
+            <Border Padding="12,8" CornerRadius="10">
+                <DockPanel LastChildFill="True">
+                    <Grid DockPanel.Dock="Top" ColumnDefinitions="140,*" Margin="8,0,8,8">
+                        <TextBlock Text="学科" FontWeight="SemiBold"/>
+                        <TextBlock Grid.Column="1" Text="作业内容" FontWeight="SemiBold"/>
+                    </Grid>
+                    <ListBox ItemsSource="{Binding Rows}"
+                             SelectedItem="{Binding Selected, Mode=TwoWay}"
+                             MinHeight="0"
+                             ScrollViewer.VerticalScrollBarVisibility="Auto">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid ColumnDefinitions="140,*" Margin="4,2">
+                                    <TextBlock Text="{Binding SubjectName}" TextTrimming="CharacterEllipsis"/>
+                                    <TextBlock Grid.Column="1" Text="{Binding Text}" TextWrapping="Wrap"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </DockPanel>
+            </Border>
+        </DockPanel>
+    </Grid>
+</ci:SettingsPageBase>

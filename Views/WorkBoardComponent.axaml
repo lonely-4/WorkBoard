@@ -1,0 +1,50 @@
+<ci:ComponentBase xmlns="https://github.com/avaloniaui"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                  xmlns:ci="clr-namespace:ClassIsland.Core.Abstractions.Controls;assembly=ClassIsland.Core"
+                  x:Class="ViewWork.Views.WorkBoardComponent"
+                  VerticalAlignment="Center"
+                  HorizontalAlignment="Center"
+                  AttachedToVisualTree="OnAttachedToVisualTree"
+                  DetachedFromVisualTree="OnDetachedFromVisualTree">
+    <Grid ColumnDefinitions="Auto,Auto,Auto"
+          VerticalAlignment="Center"
+          TextElement.FontSize="{DynamicResource MainWindowEmphasizedFontSize}">
+        <Border x:Name="SubjectWindow"
+                ClipToBounds="True"
+                VerticalAlignment="Center">
+            <Panel>
+                <TextBlock x:Name="SubjectCurrent"
+                           HorizontalAlignment="Right"
+                           VerticalAlignment="Center"
+                           TextWrapping="NoWrap"/>
+                <TextBlock x:Name="SubjectIncoming"
+                           HorizontalAlignment="Right"
+                           VerticalAlignment="Center"
+                           TextWrapping="NoWrap"
+                           IsVisible="False"
+                           IsHitTestVisible="False"/>
+            </Panel>
+        </Border>
+        <TextBlock Grid.Column="1"
+                   Text=" | "
+                   VerticalAlignment="Center"
+                   Opacity="0.72"/>
+        <Border x:Name="HomeworkWindow"
+                Grid.Column="2"
+                ClipToBounds="True"
+                VerticalAlignment="Center">
+            <Panel>
+                <TextBlock x:Name="HomeworkCurrent"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           TextWrapping="NoWrap"/>
+                <TextBlock x:Name="HomeworkIncoming"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           TextWrapping="NoWrap"
+                           IsVisible="False"
+                           IsHitTestVisible="False"/>
+            </Panel>
+        </Border>
+    </Grid>
+</ci:ComponentBase>

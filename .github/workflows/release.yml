@@ -1,0 +1,39 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+
+      - name: Build plugin package
+        run: dotnet build -c Release
+
+      - name: Publish GitHub release
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          $refType = "${{ github.ref_type }}"
+          $tag = "${{ github.ref_name }}"
+          if ($refType -ne "tag") {
+            $tag = "v" + (Get-Date -Format "yyyy.MM.dd.HHmm")
+          }
+          $checksum = Get-Content "cipx/checksums.md" -Raw
+          $body = "ClassIsland 作业看板插件包。安装本发布中的 ViewWork.cipx。`n`n$checksum"
+          gh release create $tag "cipx/ViewWork.cipx" --title "作业看板 $tag" --notes $body

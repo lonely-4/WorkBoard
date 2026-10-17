@@ -1,0 +1,11 @@
+# 插件清单文件使用 YAML 格式存储。
+# 插件清单格式：https://docs.classisland.tech/dev/plugins/create-project.html
+
+id: viewwork.workboard
+name: 作业看板
+description: 在主界面按学科轮播今日作业。同一学科的作业播完后，学科与作业一起滚动到下一科。
+entranceAssembly: "ViewWork.dll"
+url: https://github.com/Starry-Sky-World/WorkBoard
+version: 1.0.0.0
+apiVersion: 2.0.0.0
+author: Starry-Sky-World

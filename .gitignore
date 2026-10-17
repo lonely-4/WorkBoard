@@ -1,0 +1,6 @@
+bin/
+obj/
+cipx/
+.firecrawl/
+.vs/
+*.user
