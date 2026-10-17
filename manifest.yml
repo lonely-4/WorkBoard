@@ -6,6 +6,6 @@ name: 作业看板
 description: 在主界面按学科轮播今日作业。同一学科的作业播完后，学科与作业一起滚动到下一科。
 entranceAssembly: "ViewWork.dll"
 url: https://github.com/lonely-4/WorkBoard
-version: 1.0.0.0
+version: 1.0.1.0
 apiVersion: 2.0.0.0
 author: lonely-4

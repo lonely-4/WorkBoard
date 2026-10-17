@@ -37,6 +37,10 @@
         </None>
     </ItemGroup>
 
+    <Target Name="RemovePluginNativeRuntimes" BeforeTargets="CreateCipx">
+        <RemoveDir Directories="$(OutputPath)runtimes"/>
+    </Target>
+
     <Target Name="SkipCipxHashWhenPwshMissing" BeforeTargets="CreateCipx">
         <Exec Command="pwsh -NoLogo -Command &quot;exit 0&quot;" IgnoreExitCode="true" ConsoleToMSBuild="true">
             <Output TaskParameter="ExitCode" PropertyName="PwshProbeExitCode"/>
